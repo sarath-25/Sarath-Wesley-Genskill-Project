@@ -1,0 +1,32 @@
+<!docktype html>
+<html lang="en">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Task Manager</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <center><h1>Welcome to the Task Manager application</h1></center>
+    {% block body %}
+    <center><h3>To continue using our application, please register below. If already registered, login to continue.</h3></center>
+    <center><div>
+      <a href="{{url_for('todo.user_register') }}"><button type="button" class="btn btn-primary">REGISTER</button></a>
+      <a href="{{url_for('todo.user_login') }}"><button type="button" class="btn btn-primary">LOGIN</button></a>
+    </div>
+    {% endblock %}
+  </body>
+</html>    
+      
