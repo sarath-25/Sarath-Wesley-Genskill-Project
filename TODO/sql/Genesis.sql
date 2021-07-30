@@ -14,8 +14,10 @@ create table tasks (
     id serial primary key,
     task_name text unique not null,
     task_description text unique not null,
-    due_date date,
-    due_time time,
+    due_date date not null,
+    due_time time not null,
+    date_time text,
+    status text,
     _user integer,
     foreign key(_user) references users(id) on delete cascade
 );
