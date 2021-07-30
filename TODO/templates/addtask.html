@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+  <p>
+    <form action="{{url_for('todo.add_task', uid=id)}}" method="POST">
+      <div class="mb-3 row">
+        <label for="Taskname" class="col-sm-2 col-form-label">Task Name</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="Taskname" name="Taskname" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for = "description" class="form-label">Task Description</label><br/>
+        <textarea rows="10" id="description" class="form-control"
+              name="description" required>
+        </textarea>
+      </div>
+      <div>
+      <div>
+        <label for="date">Due date</label>
+	      <input type="date" name="date" id="date" required>
+	      <br>
+	        
+	      <label for="time">Due time</label>
+	      <input type="time" id="time" name="time" required>
+	      <br>
+        <input class="btn btn-primary" type="submit">
+      </div>
+    </form>
+    <a class="btn btn-primary" href="{{url_for('todo.user_homepage', uid=id)}}">Cancel</a>
+  </p>
+  
+{% endblock %}  
