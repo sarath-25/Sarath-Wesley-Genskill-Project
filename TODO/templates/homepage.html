@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+  <h3>There are {{week_tasks}} due this week</h3>
+  <h3>There are {{day_tasks}} due today<h3>
+  <h3>{{over_tasks}} tasks overdue</h3>
+  <table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Task</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tid, name, due, status in tasks %}
+    <tr>
+      <th scope="row">{{tid}}</th>
+      <td>{{name}}</td>
+      <td>{{due}}</td>
+      <td>{{status}}</td>
+      <td><a href="{{url_for('todo.del_task', uid=id, tid=tid)}}">Delete Task</td>
+    </tr>
+    {% endfor %}
+    <a class="btn btn-primary" href={{url_for('todo.add_task',uid=id)}}>AddTask</a>
+
+{% endblock %} 
+    
