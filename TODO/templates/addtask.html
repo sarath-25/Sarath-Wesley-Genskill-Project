@@ -20,12 +20,12 @@
       <div>
         <label for="date">Due date</label>
 	      <input type="date" name="date" id="date" required>
-	      <br>
 	        
-	      <label for="time">Due time</label>
-	      <input type="time" id="time" name="time" required>
+	      <label for="appt">Due time</label>
+	      <input type="time" id="appt" name="appt" min="00:00" max="24:00" required>
 	      <br>
-        <input class="btn btn-primary" type="submit">
+        <button type="submit" class="btn btn-primary">Add task</button>
+        <br>
       </div>
     </form>
     <a class="btn btn-primary" href="{{url_for('todo.user_homepage', uid=id)}}">Cancel</a>
