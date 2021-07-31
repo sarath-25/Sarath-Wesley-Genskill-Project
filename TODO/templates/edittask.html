@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+  <p>
+    <form action="{{url_for('todo.edit_task', uid=uid, tid=tid)}}" method="POST">
+    <div class="mb-3 row">
+        <label for="Taskname" class="col-sm-2 col-form-label">Task Name</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="Taskname" name="Taskname" value={{name}} required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for = "description" class="form-label">Task Description</label><br/>
+        <textarea rows="10" id="description" class="form-control"
+              name="description" required>
+              {{description}}
+        </textarea>
+      </div>
+      <div>
+        <label for="date">Due date</label>
+	      <input type="date" name="date" id="date" value={{date}} required>
+	        
+	      <label for="appt">Due time</label>
+	      <input type="time" id="appt" name="appt" min="00:00" max="24:00" value={{time}} required>
+	    </div>
+	    <div class="form-check">
+        {% if "Completed" in status %}
+        <input class="form-check-input" type="radio" name="options" id="options" value="Completed" checked>
+        {% else %}
+        <input class="form-check-input" type="radio" name="options" id="options" value="Completed">
+        {% endif %}
+        <label class="form-check-label" for="options">
+          Completed    
+        </label>
+      </div>
+      <div class="form-check">
+        {% if "Completed" in status %}
+        <input class="form-check-input" type="radio" name="options" id="options" value="Due">
+        {% else %}
+        <input class="form-check-input" type="radio" name="options" id="options" value="Due" checked>
+        {% endif %}
+        <label class="form-check-label" for="options">
+          Due
+        </label>
+      </div> 
+      <button type="submit" class="btn btn-primary">Edit Task</button>    
+      </form>
+      <a class="btn btn-primary" href="{{url_for('todo.task_details', uid=uid, tid=tid)}}">Cancel</a>
+  </p>
+  
+{% endblock %}  

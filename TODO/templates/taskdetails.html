@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block body %}
+  
+    {% for task_name, description, due, status in task %}
+    <h3> Task Name: {{task_name}}</h3>
+    <p>
+      <h5> Task description </h5>
+      <br>
+      {{description}}
+    </p>
+    <h8> Due Date: {{due}} </h8>
+    <h8>Status: {{status}} </h8>
+    {% endfor %}
+    <a class="btn btn-primary" href="{{url_for('todo.edit_task', uid=uid, tid=tid)}}">Edit Task</a>
+    
+{% endblock %}
