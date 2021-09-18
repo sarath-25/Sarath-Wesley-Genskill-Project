@@ -3,7 +3,7 @@ drop table if exists users;
 
 
 create table users (
-      id serial primary key,
+      id varchar(100) primary key,
       name text unique not null,
       mail text unique not null,
       pwd text unique not null
@@ -18,6 +18,6 @@ create table tasks (
     due_time time not null,
     date_time text,
     status text,
-    _user integer,
+    _user varchar(100),
     foreign key(_user) references users(id) on delete cascade
 );
