@@ -6,7 +6,8 @@ from flask_bcrypt import Bcrypt
 import datetime
 import uuid
 
-login = 0
+
+
 def diff_dates(a, b):
   x_obj = datetime.datetime.strptime(a, '%Y-%m-%d %H:%M:%S')
   if b > x_obj:
@@ -36,13 +37,13 @@ def user_register():
         usrname = request.form.get('mailid')
         name = request.form.get('name')
         p = request.form.get('pwd')
+        user_id = str(uuid.uuid4())
         conn = db.get_db()
         cur = conn.cursor()
         bcrypt = Bcrypt(current_app)
         hashed_pwd = bcrypt.generate_password_hash(p).decode('utf-8')
         pwd = hashed_pwd
-        uid = str(uuid.uuid1())
-        cur.execute("Insert into users(id, name, mail, pwd) values (%s, %s, %s, %s)", (uid, name, usrname, pwd))
+        cur.execute("Insert into users(id, name, mail, pwd) values (%s, %s, %s, %s)", (user_id, name, usrname, pwd))
         cur.close()
         conn.commit()
         flash(f"Welcome {name}, You are registered successfully")
@@ -87,7 +88,7 @@ def user_homepage(uid):
   today = datetime.date.today()
   now = datetime.datetime.now()
   time = now.time()
-  cur.execute("select date_time from tasks where _user = %s", (uid))
+  cur.execute("select date_time from tasks where _user = %s", (uid,))
   for x in cur.fetchall():
     cur.execute("select status from tasks where _user = %s and date_time = %s", (uid, x))
     stat = cur.fetchone()[0]
